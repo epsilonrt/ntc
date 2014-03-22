@@ -31,18 +31,20 @@ extern "C" {
 
 /* internal public functions ================================================ */
 /**
- * Conversion from temperature to resistance.
- * Calculates and returns resistance for given temperature.
- * @param t temperature (in degree Celsius).
- * @return corresponding resistance.
+ * Conversion from temperature to resistance
+ * Calculates and returns resistance for given temperature
+ * @param dT temperature (in degree Celsius)
+ * @param dCoeff Steinhart-Hart coefficients, calculates with ntc-coeff utility
+ * @return corresponding resistance
  */
 double dNtcTempToRes (double dT, double dCoeff[]);
 
 /**
- * Conversion from resistance to temperature.
- * Calculates and returns temperature for given resistance.
- * @param t resistance (in Ohm).
- * @return corresponding temperature.
+ * Conversion from resistance to temperature
+ * Calculates and returns temperature for given resistance
+ * @param dR resistance (in Ohm)
+ * @param dCoeff Steinhart-Hart coefficients, calculates with ntc-coeff utility
+ * @return corresponding temperature
  */
 double dNtcResToTemp(double dR, double dCoeff[]);
 
