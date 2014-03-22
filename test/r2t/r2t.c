@@ -72,12 +72,28 @@ int main(int argc, char *argv[])
   int i;
   double r;
 
+#if 0
   /* Coefficients of Steinhart-Hart polynom. */
   double a[] = {
     4.524024725919526e-004,
     3.934722516618191e-004,
     -7.642331765196044e-006,
     4.048572707661904e-007,
+  };
+  // Murata NXFT15-10k
+  double a[] = {
+    9.310296797541951e-04,
+    2.308343095769287e-04,
+    3.001370069362199e-06,
+    5.407975166655454e-08
+  };
+#endif
+  // AVX NJ28 MA3960 - 3k
+  double a[] = {
+    1.384458976342609e-03,
+    2.393452650459891e-04,
+    4.184121390081160e-07,
+    5.134115012343303e-08
   };
 
   printf("Thermistor library version 1.0\n");
