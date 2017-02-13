@@ -92,6 +92,11 @@ MATH_LIB_ENABLE = ON
 #     gnu99 = c99 plus GCC extensions
 CSTANDARD = -std=gnu99
 
+#---------------- Install Options ----------------
+prefix=/usr/local
+INSTALL_BINDIR=$(prefix)/bin
+VERSION=1.0.0
+
 #-------------------------------------------------------------------------------
 # Define programs and commands.
 CC = gcc
@@ -224,6 +229,8 @@ MSG_CLEANING = [CLEAN]\t\t
 MSG_EXTENDED_LISTING = [LISTING]\t
 MSG_SYMBOL_TABLE = [SYMBOL]\t
 MSG_SIZE = [SIZE]
+MSG_INSTALL = [INSTALL]
+MSG_UNINSTALL = [UNINSTALL]
 
 # Define all object files.
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:%.c=%.o) $(CPPSRC:%.cpp=%.o) $(ASRC:%.S=%.o))
@@ -247,6 +254,14 @@ build: elf lss sym
 rebuild: sizebefore clean_list build sizeafter
 clean: clean_list
 distclean: distclean_list clean_list
+
+install: uninstall build
+	@echo "$(MSG_INSTALL) $(TARGET)"
+	-install -m 755 $(TARGET) $(INSTALL_BINDIR)
+
+uninstall:
+	@echo "$(MSG_UNINSTALL) $(TARGET)"
+	-rm -f $(INSTALL_BINDIR)/$(TARGET)
 
 elf: $(TARGET)
 lss: $(TARGET_PATH).lss
